@@ -1,20 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-</head>
-<body>
-    <form onsubmit="return addMsn()">
-    <input id="nb" type="text" placeholder="nombre" />
-    <input id="msn" type="text" placeholder="msn" />
-    <input type="submit" value="enviar" />
-    </form>
-    <div id="caja"></div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./index.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entregable 6</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script>
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+        </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Entregable 6</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="index.html">Registrar</a>
+                    <a class="nav-link" href="/productos">Listar</a>
+                    <a class="nav-link" href="/chat">Chat</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <h2 class="text-center">Ingrese Producto</h2>
+    <div class="container mt-3 p-3 bg-light" id="myform">
+        <form action="http://localhost:8080/productos" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label is-invalid">Id:</label>
+                <input type="text" class="form-control" name="id" id="id" placeholder="1" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Title:</label>
+                <input type="text" class="form-control is-invalid" name="title" id="title" placeholder="Laptop"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Price:</label>
+                <input type="text" class="form-control is-invalid" name="price" id="price" placeholder="250.000"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Thumbnail:</label>
+                <input type="text" class="form-control is-invalid" name="thumbnail" id="thumbnail"
+                    placeholder="https://www.imagehost.com/somepic.jpg" required>
+            </div>
+            <button id="enviar" type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
 </body>
+
 </html>

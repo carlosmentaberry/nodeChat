@@ -1,5 +1,5 @@
 {
-  "name": "chat",
+  "name": "App",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.13",
+    "express-handlebars": "^5.3.4",
     "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
