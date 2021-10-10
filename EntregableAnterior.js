@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require("path");
 
 module.exports = class Contenedor {
     constructor(nombre) {
@@ -23,7 +24,7 @@ module.exports = class Contenedor {
 
     readAll = async () => {
         try {
-            let content = await fs.promises.readFile(__dirname + "\\" + this.nombre, "utf-8");
+            let content = await fs.promises.readFile(path.join(__dirname, this.nombre), "utf-8");
             let array = getArrayFromJsonContent(content);
             return array;
         } catch (err) {
