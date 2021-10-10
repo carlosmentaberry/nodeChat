@@ -30,6 +30,12 @@ let user = undefined;
 const addMsn = () => {
     if (!nombre) {
         nombre = prompt('Ingresa un nombre');
+        if (!nombre) {
+            nombre = prompt('Necesitas ingresar un nombre');
+            if (!nombre) {
+                return false;
+            }
+        }
         user = { nombre: nombre, id: socket.id };
         socket.emit("Log_Connecte_Users", user);
     }
