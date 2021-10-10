@@ -7,9 +7,12 @@
 
     <form onsubmit="return addMsn()">
         <strong><label id="nb" /></strong>
-        <div class="input-group">
+        <div class="input-group has-validation">
             <span class="input-group-text">Mensaje</span>
-            <textarea id="msn" class="form-control" aria-label="With textarea" placeholder="Hola!"></textarea>
+            <textarea id="msn" class="form-control" aria-label="With textarea" placeholder="Hola!" required></textarea>
+            <div class="invalid-feedback">
+                Debes ingresar un mensaje.
+            </div>
             <input type="submit" value="enviar" class="btn btn-primary" />
         </div>
     </form>
