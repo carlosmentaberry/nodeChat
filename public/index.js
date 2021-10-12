@@ -1,7 +1,6 @@
 const socket = io();
 let nombre = undefined;
 
-
 socket.on("message_back", (data) => {
     render(data);
 });
@@ -26,8 +25,11 @@ const render = (data) => {
     fullhtml += html + `</table>`;
     document.getElementById("caja").innerHTML = fullhtml;
 }
+
 let user = undefined;
-const addMsn = () => {
+
+function addMessage() {
+
     if (!nombre) {
         nombre = prompt('Ingresa un nombre');
         if (!nombre) {
@@ -51,5 +53,20 @@ const addMsn = () => {
     document.getElementById("username").innerHTML = "(" + nombre + ")";
     document.getElementById("msn").value = "";
     document.getElementById("msn").focus();
+    
+    showToast(obj);
     return false;
 }
+
+function showToast(obj) {
+    document.getElementById("toasttime").innerHTML = obj.time;
+    document.getElementById("toastusername").innerHTML = obj.nombre;
+    document.getElementById("toastmsg").innerHTML = obj.msn;
+    var toast = document.getElementById("liveToast");
+    toast.className = "toast show";
+    setTimeout(function () {
+        toast.className = toast.className.replace("toast show", "toast hide");
+    }, 2000);
+    return false;
+}
+

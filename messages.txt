@@ -1,14 +1,2 @@
 [
-  {
-    "id": 1,
-    "date": "9/10/2021 20:47:32",
-    "user": "Charly",
-    "message": "hola!!"
-  },
-  {
-    "id": 2,
-    "date": "9/10/2021 20:47:55",
-    "user": "Pedro",
-    "message": "Hola!"
-  }
 ]

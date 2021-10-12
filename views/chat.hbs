@@ -1,11 +1,10 @@
 <h2 class="text-center">{{{title}}}</h2>
-<h5 class="text-center"id="username"></h5>
+<h5 class="text-center" id="username"></h5>
 <div class="container mt-3 p-3">
     <div id="caja">
-
     </div>
 
-    <form onsubmit="return addMsn()">
+    <form onsubmit="return addMessage()">
         <strong><label id="nb" /></strong>
         <div class="input-group has-validation">
             <span class="input-group-text">Mensaje</span>
@@ -13,11 +12,39 @@
             <div class="invalid-feedback">
                 Debes ingresar un mensaje.
             </div>
-            <input type="submit" value="enviar" class="btn btn-primary" />
+            <button id="emojitrigger" class="btn btn-outline-warning">😎</button>
+            <input type="submit" value="enviar" class="btn btn-outline-primary" />
         </div>
     </form>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./index.js"></script>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">
+                    <p id="toastusername"></p>
+                </strong>
+                <small id="toasttime"></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <p id="toastmsg"></p>
+            </div>
+        </div>
+    </div>
 
-</div> 
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="./index.js"></script>
+
+<script type="module">
+
+    import { EmojiButton } from 'https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@4.6.0/dist/index.min.js';
+    const picker = new EmojiButton();
+    const trigger = document.querySelector('#emojitrigger');
+    picker.on('emoji', selection => {
+        document.getElementById("msn").value = document.getElementById("msn").value + selection.emoji;
+    });
+    trigger.addEventListener('click', () => picker.togglePicker(trigger));
+
+</script>

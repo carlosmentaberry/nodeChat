@@ -48,7 +48,7 @@ app.post("/productos", (req, res) => {
 });
 
 app.get("/productos", async (req, res) => {
-  res.render("products", { products: JSON.parse(await products.readAll()), title: "Vista de productos" });
+    res.render("products", { products: JSON.parse(await products.readAll()), title: "Vista de productos" });
 });
 
 app.get("/chat", async (req, res) => {
@@ -57,7 +57,7 @@ app.get("/chat", async (req, res) => {
 
 io.on("connection", (socket) => {
     socket.emit("message_back", msn);
-    
+
     socket.on("data_client", (data) => {
         msn.push(data);
         messages.save({ id: 0, date: data.time, user: data.nombre, message: data.msn });
