@@ -6,7 +6,7 @@ module.exports = class Contenedor {
         this.nombre = nombre;
     }
 
-    save = async (Object) => {
+    async save (Object) {
         try {
             let array = JSON.parse(await this.readAll());
             let id_asignado = getMaxId(array);
@@ -22,7 +22,7 @@ module.exports = class Contenedor {
         }
     };
 
-    readAll = async () => {
+    async readAll () {
         try {
             let content = await fs.promises.readFile(path.join(__dirname, this.nombre), "utf-8");
             let array = getArrayFromJsonContent(content);
@@ -33,19 +33,19 @@ module.exports = class Contenedor {
         }
     };
 
-    getRandom = async () => {
+    async getRandom () {
         let arr = await this.readAll();
         let r = Math.floor(Math.random() * (arr.length)) + 1;
         return arr.filter(prod => prod.id == r);
     }
 
-    getById = async (id) => {
+    async getById (id) {
         let array = JSON.parse(await this.readAll()).filter(x => x.id == id);
         console.log(JSON.stringify(array, null, 2));
         return array.length <= 0 ? "No existe el objeto" : array;
     };
 
-    updateById = async (id, object) => {
+    async updateById (id, object) {
         let array = JSON.parse(await this.readAll());
         if(array.filter(x => x.id == id).length > 0){
             array.map(obj => {
@@ -62,7 +62,7 @@ module.exports = class Contenedor {
         }
     };
 
-    deleteById = async (id) => {
+    async deleteById (id) {
         let array = JSON.parse(await this.readAll());
         const index = array.indexOf(array.filter(x => x.id == id)[0]);
         if (index > -1) {
@@ -73,11 +73,11 @@ module.exports = class Contenedor {
         }
     };
 
-    deleteAll = async () => {
+    async deleteAll () {
         await this.write("[]");
     };
 
-    write = async (content) =>{
+    async write (content) {
         let result = true;
         await fs.promises.writeFile(this.nombre, content, error =>{
             if(error){
